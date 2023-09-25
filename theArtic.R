@@ -87,11 +87,11 @@ get_up_morning_avoid = query_epigraphdb(
 
 avoid_df <- grep("avoid",names(.GlobalEnv),value=TRUE)
 avoid_df <- do.call(rbind,do.call("list",mget(avoid_df)))
-avoid_df <- avoid_df %>% dplyr::select(exposure.trait,mr.b,mr.se,mr.pval)
+avoid_df <- avoid_df %>% dplyr::select(outcome.trait, exposure.trait,mr.b,mr.se,mr.pval)
 
 try_df <- grep("try",names(.GlobalEnv),value=TRUE)
 try_df <- do.call(rbind,do.call("list",mget(try_df)))
-try_df <- try_df %>% dplyr::select(exposure.trait,mr.b,mr.se,mr.pval)
+try_df <- try_df %>% dplyr::select(outcome.trait, exposure.trait,mr.b,mr.se,mr.pval)
 
 write.table(try_df,"to_try.tsv",sep = "\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
 write.table(avoid_df,"to_avoid.tsv",sep = "\t", row.names = FALSE, col.names = TRUE, quote = FALSE)
